@@ -181,6 +181,107 @@ class HomeController
                 color: var(--text-primary);
             }
 
+            .endpoint-card {
+                padding: 1.2rem;
+                border-radius: 20px;
+                background: var(--surface-muted);
+                border: 1px solid rgba(15, 23, 42, 0.06);
+                box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+            }
+
+            .endpoint-examples {
+                display: grid;
+                gap: 0.85rem;
+                margin-top: 0.9rem;
+                grid-template-columns: 1fr;
+            }
+
+            .code-card {
+                padding: 0.85rem 0.95rem;
+                border-radius: 16px;
+                background: var(--code-bg);
+                border: 1px solid var(--code-border);
+                box-shadow: 0 8px 18px rgba(14, 165, 233, 0.1);
+            }
+
+            .code-card strong {
+                color: var(--text-primary);
+                font-size: 0.88rem;
+            }
+
+            .code-card pre {
+                margin: 0.55rem 0 0;
+                font-size: 0.86rem;
+                line-height: 1.5;
+                color: var(--code-text);
+                background: transparent;
+                padding: 0;
+                white-space: pre-wrap;
+                overflow-x: auto;
+            }
+
+            .code-card pre::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .code-card pre::-webkit-scrollbar-thumb {
+                background: rgba(14, 165, 233, 0.35);
+                border-radius: 999px;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 1.5rem;
+                }
+
+                .container {
+                    border-radius: 20px;
+                    padding: 1.2rem;
+                }
+
+                .cta-group {
+                    flex-direction: column;
+                    gap: 0.75rem;
+                }
+
+                .cta-group .button {
+                    width: 100%;
+                    justify-content: center;
+                }
+
+                section {
+                    margin-top: 1.9rem;
+                    gap: 1.1rem;
+                }
+
+                .grid {
+                    gap: 0.9rem;
+                }
+
+                .code-card {
+                    padding: 0.8rem 0.85rem;
+                }
+
+                .code-card pre {
+                    font-size: 0.8rem;
+                    line-height: 1.4;
+                }
+            }
+
+            @media (max-width: 520px) {
+                h1 {
+                    font-size: clamp(1.8rem, 8vw, 2.4rem);
+                }
+
+                .container {
+                    padding: 1rem;
+                }
+
+                .code-card strong {
+                    font-size: 0.85rem;
+                }
+            }
+
             footer {
                 margin-top: 1.75rem;
                 border-top: 1px solid var(--border);
@@ -238,16 +339,16 @@ class HomeController
 
             <section aria-labelledby="endpoint">
                 <div class="pill" id="endpoint">Point d’accès</div>
-                <div class="card">
+                <div class="card endpoint-card">
                     <h3>GET /api/v1/check-nni/{nni}</h3>
                     <p>
                         Effectuez une requête HTTP avec un NNI mauritanien à 10 chiffres et le paramètre optionnel <code>lang</code>
                         (<code>fr</code>, <code>ar</code>, <code>both</code>). La réponse contient les informations citoyennes simulées ainsi qu’un rappel de non-affiliation gouvernementale.
                     </p>
-                    <div style="display:grid; gap:1rem;">
-                        <div style="padding:0.9rem 1rem; border-radius:16px; background:#fff; border:1px solid rgba(15,23,42,0.08);">
+                    <div class="endpoint-examples">
+                        <div class="code-card">
                             <strong>Requête</strong>
-                            <pre style="margin:0.6rem 0 0; font-size:0.9rem;">
+                            <pre>
 <span style="color:#64748b;"># Récupération en français</span>
 curl "<span style="color:#0284c7;">https://registry.neotic.dev/api/v1/check-nni/1200000000</span>?<span style="color:#0f172a;">lang</span>=<span style="color:#10b981;">fr</span>"
 
@@ -255,9 +356,9 @@ curl "<span style="color:#0284c7;">https://registry.neotic.dev/api/v1/check-nni/
 curl "<span style="color:#0284c7;">https://registry.neotic.dev/api/v1/check-nni/1200000002</span>?<span style="color:#0f172a;">lang</span>=<span style="color:#10b981;">both</span>"
                             </pre>
                         </div>
-                        <div style="padding:0.9rem 1rem; border-radius:16px; background:#fff; border:1px solid rgba(15,23,42,0.08);">
+                        <div class="code-card">
                             <strong>Réponse (fr)</strong>
-                            <pre style="margin:0.6rem 0 0; font-size:0.9rem; white-space:pre-wrap;">
+                            <pre>
 {
   "<span style="color:#0284c7;">data</span>": {
     "<span style="color:#0284c7;">nni</span>": "<span style="color:#10b981;">1200000000</span>",
@@ -282,9 +383,9 @@ curl "<span style="color:#0284c7;">https://registry.neotic.dev/api/v1/check-nni/
 }
                             </pre>
                         </div>
-                        <div style="padding:0.9rem 1rem; border-radius:16px; background:#fff; border:1px solid rgba(15,23,42,0.08);">
+                        <div class="code-card">
                             <strong>Réponse (both)</strong>
-                            <pre style="margin:0.6rem 0 0; font-size:0.9rem; white-space:pre-wrap;">
+                            <pre>
 {
   "<span style="color:#0284c7;">data</span>": {
     "<span style="color:#0284c7;">nni</span>": "<span style="color:#10b981;">1200000002</span>",
